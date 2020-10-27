@@ -15,7 +15,7 @@ type IndexProps = PropsFromRedux & {
   visibleQuestion: string;
 };
 
-const Index = (props: IndexProps) => {
+export const Index = (props: IndexProps) => {
   const { visibleQuestion } = props;
   return (
     <View>
