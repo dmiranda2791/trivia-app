@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "./store";
+import StyleGuide from "./StyleGuide";
 
 const mapStateToProps = (state: RootState) => ({
   visibleQuestion: state.trivia.visibleQuestion,
@@ -19,9 +20,15 @@ export const Index = (props: IndexProps) => {
   const { visibleQuestion } = props;
   return (
     <View>
-      <Text>Visible Question: {visibleQuestion}</Text>
+      <Text style={styles.text}>Visible Question: {visibleQuestion}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    ...StyleGuide.text.title,
+  },
+});
 
 export default connector(Index);

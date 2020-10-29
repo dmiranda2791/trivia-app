@@ -3,15 +3,28 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "./src/store";
-import Index from "./src";
+import { useFonts } from "expo-font";
+import { AppLoading } from "expo";
+import { NavigationContainer } from "@react-navigation/native";
+
+import Navigator from "./src/components/Navigator";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    IrishGroverRegular: require("./assets/fonts/IrishGrover-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <Index />
-      </View>
+      <NavigationContainer>
+        <View style={styles.container}>
+          <StatusBar style="auto" />
+          <Navigator />
+        </View>
+      </NavigationContainer>
     </Provider>
   );
 }
@@ -19,8 +32,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
   },
 });
