@@ -6,6 +6,12 @@ import Results from "../screens/Results";
 
 const Stack = createStackNavigator();
 
+export type ScreenParams = {
+  Question: undefined;
+  Results: undefined;
+  Welcome: undefined;
+};
+
 const Navigator = () => {
   return (
     <Stack.Navigator headerMode="none">

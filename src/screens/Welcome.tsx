@@ -10,10 +10,7 @@ import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
 import { beginGame } from "../store/reducers/trivia";
 import { getQuestions } from "../store/actions";
-
-type ScreenParams = {
-  Question: undefined;
-};
+import { ScreenParams } from "../components/Navigator";
 
 type WelcomeProps = StackScreenProps<ScreenParams>;
 

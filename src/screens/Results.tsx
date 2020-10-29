@@ -2,13 +2,10 @@ import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Button from "../components/Buttons/Button";
+import { ScreenParams } from "../components/Navigator";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
-
-type ScreenParams = {
-  Welcome: undefined;
-};
 
 type ResultsProps = StackScreenProps<ScreenParams>;
 const questions = [

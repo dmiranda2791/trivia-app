@@ -4,10 +4,12 @@ import StyleGuide from "../StyleGuide";
 
 interface ProgressProps {
   progress: number;
+  total: number;
+  current: number;
 }
 
 const Progress = (props: ProgressProps) => {
-  const { progress } = props;
+  const { progress, total, current } = props;
   return (
     <View style={styles.containter}>
       <View style={[styles.bar, styles.incomplete]}>
@@ -19,7 +21,9 @@ const Progress = (props: ProgressProps) => {
           ]}
         />
       </View>
-      <Text style={styles.text}>1/10</Text>
+      <Text style={styles.text}>
+        {current}/{total}
+      </Text>
     </View>
   );
 };

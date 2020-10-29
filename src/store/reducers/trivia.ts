@@ -1,6 +1,10 @@
 import { Question } from "../entities";
 import { createSlice } from "@reduxjs/toolkit";
 
+interface QuestionAnswered {
+  question: Question;
+  answerIsCorrect: boolean;
+}
 export interface TriviaState {
   questions: {
     loading: boolean;
@@ -8,13 +12,14 @@ export interface TriviaState {
     skipped: Question[];
     answered: Question[];
     error: string | null;
-    visible: Question | undefined;
+    visible: Question | null;
   };
   game: {
     totalQuestions: number;
+    answeredQuestionsCount: number;
     progress: number;
     correctAnswersCount: number;
-    answers: Question[];
+    answers: QuestionAnswered[];
   };
 }
 
@@ -25,14 +30,27 @@ const initialState: TriviaState = {
     skipped: [],
     answered: [],
     error: null,
-    visible: undefined,
+    visible: null,
   },
   game: {
     totalQuestions: 0,
+    answeredQuestionsCount: 0,
     progress: 0,
     correctAnswersCount: 0,
     answers: [],
   },
+};
+
+const selectNextQuestion = (state: TriviaState) => {
+  const nextUnasweredQuestion = state.questions.unanswered.shift();
+  if (nextUnasweredQuestion) {
+    state.questions.visible = nextUnasweredQuestion;
+  } else if (state.questions.skipped.length > 0) {
+    const nextSkippedQuestion = state.questions.skipped.shift();
+    if (nextSkippedQuestion) {
+      state.questions.visible = nextSkippedQuestion;
+    }
+  }
 };
 
 const triviaSlice = createSlice({
@@ -55,7 +73,37 @@ const triviaSlice = createSlice({
       const [visible, ...unanswered] = state.questions.unanswered;
       state.questions.visible = visible;
       state.questions.unanswered = unanswered;
-      state.game.progress = 1 / state.game.totalQuestions;
+      state.game.progress = 0;
+      state.game.answeredQuestionsCount = 0;
+    },
+    answerQuestion(state, action) {
+      const { answer } = action.payload;
+
+      const answerIsCorrect =
+        state.questions.visible?.correct_answer === answer;
+
+      if (state.questions.visible) {
+        state.game.answers.push({
+          question: state.questions.visible,
+          answerIsCorrect,
+        });
+
+        state.game.answeredQuestionsCount += 1;
+        state.game.progress =
+          (state.game.answeredQuestionsCount + 1) / state.game.totalQuestions;
+      }
+
+      if (answerIsCorrect) {
+        state.game.correctAnswersCount += 1;
+      }
+
+      selectNextQuestion(state);
+    },
+    skipQuestion(state) {
+      if (state.questions.visible) {
+        state.questions.skipped.push(state.questions.visible);
+        selectNextQuestion(state);
+      }
     },
   },
 });
@@ -65,6 +113,8 @@ export const {
   getQuestionsFailed,
   getQuestionsSucceded,
   beginGame,
+  answerQuestion,
+  skipQuestion,
 } = triviaSlice.actions;
 
 export default triviaSlice.reducer;
