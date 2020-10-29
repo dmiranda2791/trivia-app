@@ -9,28 +9,22 @@ import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
 
-import { getQuestions } from "../store/actions";
+import { beginGame, getQuestions } from "../store/actions";
 
 type ScreenParams = {
-  Question: {
-    category: string;
-    question: string;
-  };
+  Question: undefined;
 };
 
 type WelcomeProps = StackScreenProps<ScreenParams>;
 
 const Welcome = (props: WelcomeProps) => {
   const { navigation } = props;
+  const dispatch = useDispatch();
 
   const onPress = React.useCallback(() => {
-    navigation.navigate("Question", {
-      category: "Entertainment: Video Games",
-      question: "Unturned originally started as a Roblox game.",
-    });
-  }, [navigation]);
-
-  const dispatch = useDispatch();
+    dispatch(beginGame(undefined));
+    navigation.navigate("Question");
+  }, [navigation, dispatch]);
 
   useFocusEffect(
     React.useCallback(() => {

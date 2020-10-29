@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 import StyleGuide from "../StyleGuide";
 
 interface BoxProps {
-  text: string;
+  text?: string;
 }
 
 const { height } = Dimensions.get("window");

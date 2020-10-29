@@ -1,10 +1,10 @@
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { Question } from "../store/entities";
+import { AllHtmlEntities } from "html-entities";
 
 interface Client {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  get(url: string): Promise<GetQuestionsResponse>;
+  get(_: string): Promise<GetQuestionsResponse>;
 }
 
 type GetQuestionsResponse = {
@@ -13,12 +13,22 @@ type GetQuestionsResponse = {
 };
 type IdGeneratorType = () => string;
 
+interface IDescriptionParser {
+  decode(_: string): string;
+}
+
 class DataService {
   client: Client;
   IdGenerator: IdGeneratorType;
-  constructor(client: Client, IdGenerator: IdGeneratorType) {
+  DescriptionParser: IDescriptionParser;
+  constructor(
+    client: Client,
+    IdGenerator: IdGeneratorType,
+    DescriptionParser: IDescriptionParser
+  ) {
     this.client = client;
     this.IdGenerator = IdGenerator;
+    this.DescriptionParser = DescriptionParser;
   }
   async getQuestions(amount: number): Promise<Question[]> {
     try {
@@ -26,8 +36,9 @@ class DataService {
       let { results } = await this.client.get(url);
 
       results = results.map((question: Question) => ({
-        id: this.IdGenerator(),
         ...question,
+        id: this.IdGenerator(),
+        question: this.DescriptionParser.decode(question.question),
       }));
 
       return results;
@@ -43,6 +54,8 @@ const FetchClient = {
     return fetch(url).then((response) => response.json());
   },
 };
-const instance = new DataService(FetchClient, uuidv4);
+
+const AllHtmlEntitiesParser = new AllHtmlEntities();
+const instance = new DataService(FetchClient, uuidv4, AllHtmlEntitiesParser);
 
 export default instance;

@@ -3,7 +3,7 @@ import { StyleSheet, Text } from "react-native";
 import StyleGuide from "../StyleGuide";
 
 interface TitleProps {
-  text: string;
+  text?: string;
 }
 
 const Title = ({ text }: TitleProps) => <Text style={styles.text}>{text}</Text>;
