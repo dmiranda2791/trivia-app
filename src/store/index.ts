@@ -1,5 +1,6 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+/* import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk"; */
 import rootReducer from "./reducers";
 import { TriviaState } from "./reducers";
 
@@ -7,12 +8,9 @@ export interface RootState {
   trivia: TriviaState;
 }
 
-const configureStore = () => {
-  const store = createStore(rootReducer, applyMiddleware(thunk));
-
-  return store;
-};
-
-const store = configureStore();
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: process.env.NODE_ENV !== "production",
+});
 
 export default store;
