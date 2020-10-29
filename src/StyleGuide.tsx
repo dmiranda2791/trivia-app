@@ -7,6 +7,7 @@ interface Colors {
   positive: string;
   negative: string;
   neutral: string;
+  border: string;
 }
 
 const colors: Colors = {
@@ -16,6 +17,7 @@ const colors: Colors = {
   positive: "#4DCE6C",
   negative: "#D83E3E",
   neutral: "#ADA9A9",
+  border: "#707070",
 };
 
 interface Fonts {

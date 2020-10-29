@@ -1,7 +1,7 @@
 import { Question } from "../entities";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface QuestionAnswered {
+export interface QuestionAnswered {
   question: Question;
   answerIsCorrect: boolean;
 }
@@ -105,6 +105,13 @@ const triviaSlice = createSlice({
         selectNextQuestion(state);
       }
     },
+    playAgain(state) {
+      state.questions.answered = [];
+      state.game.totalQuestions = 0;
+      state.game.progress = 0;
+      state.game.correctAnswersCount = 0;
+      state.game.answers = [];
+    },
   },
 });
 
@@ -115,6 +122,7 @@ export const {
   beginGame,
   answerQuestion,
   skipQuestion,
+  playAgain,
 } = triviaSlice.actions;
 
 export default triviaSlice.reducer;

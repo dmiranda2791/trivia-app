@@ -1,57 +1,62 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Buttons/Button";
 import { ScreenParams } from "../components/Navigator";
+import ResultsItem from "../components/ResultsItem";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
-import StyleGuide from "../StyleGuide";
+import { RootState } from "../store";
+import { playAgain } from "../store/reducers/trivia";
 
 type ResultsProps = StackScreenProps<ScreenParams>;
-const questions = [
-  {
-    id: "fkdjaskl;f",
-    question: "Unturned originally started as a Roblox game.",
-    correct: true,
-  },
-  {
-    id: "fdasfdsa",
-    question: "Unturned originally started as a Roblox game",
-    correct: true,
-  },
-  {
-    id: "fdsafdas;lkfdjs",
-    question:
-      "In the game “Melty Blood Actress Again Current Code”, you can enter Blood Heat mode in Half Moon style.",
-  },
-];
+
 const Results = (props: ResultsProps) => {
-  const onPress = () => {
+  const dispatch = useDispatch();
+  const selectAnswers = (state: RootState) => state.trivia.game.answers;
+  const selectTotalQuestions = (state: RootState) =>
+    state.trivia.game.totalQuestions;
+  const selectCorrectAnswersCount = (state: RootState) =>
+    state.trivia.game.correctAnswersCount;
+
+  const answers = useSelector(selectAnswers);
+  const totalQuestions = useSelector(selectTotalQuestions);
+  const correctAnswersCount = useSelector(selectCorrectAnswersCount);
+  const onPlayAgainPress = () => {
+    dispatch(playAgain());
     props.navigation.navigate("Welcome");
   };
   return (
     <ScreenContainer>
       <Title text="You scored" />
-      <Title text="3/10" />
-      <View style={styles.answers}>
-        {questions.map((question) => (
-          <Text key={question.id} style={styles.listItem}>
-            + {question.question}
-          </Text>
+      <Title text={`${correctAnswersCount}/${totalQuestions}`} />
+      <ScrollView
+        style={styles.separator}
+        showsHorizontalScrollIndicator={false}
+      >
+        {answers.map((question) => (
+          <ResultsItem
+            style={styles.separator}
+            key={question.question.id}
+            question={question}
+          />
         ))}
-      </View>
-      <Button onPress={onPress} text="Play again" />
+        <Button
+          style={styles.separator}
+          onPress={onPlayAgainPress}
+          text="Play again"
+        />
+      </ScrollView>
     </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  listItem: {
-    ...StyleGuide.text.sm,
-    color: StyleGuide.colors.primary,
-    textAlign: "justify",
+  separator: {
+    marginVertical: 8,
   },
-  answers: { alignItems: "flex-start" },
 });
 
 export default Results;

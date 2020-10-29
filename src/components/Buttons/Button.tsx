@@ -1,17 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import StyleGuide from "../../StyleGuide";
 
 interface ButtonProps {
   text: string;
   onPress: () => void;
+  style?: ViewStyle;
 }
 
 const Button = (props: ButtonProps) => {
-  const { text, onPress } = props;
+  const { text, onPress, style } = props;
   return (
-    <RectButton style={styles.container} onPress={onPress}>
+    <RectButton style={[styles.container, style]} onPress={onPress}>
       <View>
         <Text style={styles.text}>{text}</Text>
       </View>
