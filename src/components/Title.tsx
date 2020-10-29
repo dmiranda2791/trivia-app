@@ -1,7 +1,9 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { Dimensions, StyleSheet, Text } from "react-native";
 import StyleGuide from "../StyleGuide";
 
+const { height } = Dimensions.get("window");
+const HEIGHT = height * 0.2;
 interface TitleProps {
   text?: string;
 }
@@ -13,6 +15,7 @@ const styles = StyleSheet.create({
     ...StyleGuide.text.lg,
     color: StyleGuide.colors.white,
     textAlign: "center",
+    height: HEIGHT,
   },
 });
 export default Title;
