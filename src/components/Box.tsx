@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    ...StyleGuide.text.body,
+    ...StyleGuide.text.md,
     color: StyleGuide.colors.primary,
+    textAlign: "center",
   },
 });
 export default Box;

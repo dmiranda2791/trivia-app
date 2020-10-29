@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    fontFamily: StyleGuide.fonts.primary,
-    fontSize: 33,
+    ...StyleGuide.text.md,
     color: StyleGuide.colors.primary,
     textAlign: "center",
   },

@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Button from "../components/Buttons/Button";
 import ScreenContainer from "../components/ScreenContainer";
+import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
 
 type ScreenParams = {
@@ -33,11 +34,11 @@ const Results = (props: ResultsProps) => {
   };
   return (
     <ScreenContainer>
-      <Text style={styles.text}>You scored</Text>
-      <Text style={styles.text}>3/10</Text>
+      <Title text="You scored" />
+      <Title text="3/10" />
       <View style={styles.answers}>
         {questions.map((question) => (
-          <Text key={question.id} style={styles.text}>
+          <Text key={question.id} style={styles.listItem}>
             + {question.question}
           </Text>
         ))}
@@ -48,8 +49,9 @@ const Results = (props: ResultsProps) => {
 };
 
 const styles = StyleSheet.create({
-  text: {
-    ...StyleGuide.text.body,
+  listItem: {
+    ...StyleGuide.text.sm,
+    color: StyleGuide.colors.primary,
     textAlign: "justify",
   },
   answers: { alignItems: "flex-start" },

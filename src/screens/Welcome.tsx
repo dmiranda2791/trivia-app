@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text } from "react-native";
 import Button from "../components/Buttons/Button";
 import ScreenContainer from "../components/ScreenContainer";
+import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
 
 type ScreenParams = {
@@ -26,7 +27,7 @@ const Welcome = (props: WelcomeProps) => {
 
   return (
     <ScreenContainer>
-      <Text style={styles.title}>Welcome to the trivia challenge!</Text>
+      <Title text="Welcome to the trivia challenge!" />
       <Text style={styles.body}>
         You will be presented with 10 true or false questions.
       </Text>
@@ -46,11 +47,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
-  title: {
-    ...StyleGuide.text.title,
-  },
   body: {
-    ...StyleGuide.text.body,
+    ...StyleGuide.text.md,
+    color: StyleGuide.colors.white,
   },
 });
 export default Welcome;

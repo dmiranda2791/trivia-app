@@ -29,8 +29,9 @@ const fonts: Fonts = {
 interface StyleGuide {
   colors: Colors;
   text: {
-    title: TextStyle;
-    body: TextStyle;
+    lg: TextStyle;
+    md: TextStyle;
+    sm: TextStyle;
   };
   backgroundImage: number;
   fonts: Fonts;
@@ -40,17 +41,17 @@ const StyleGuide: StyleGuide = {
   colors,
   fonts,
   text: {
-    title: {
+    lg: {
       fontFamily: fonts.primary,
       fontSize: 40,
-      color: colors.white,
-      textAlign: "center",
     },
-    body: {
+    md: {
       fontFamily: fonts.primary,
       fontSize: 30,
-      color: colors.white,
-      textAlign: "center",
+    },
+    sm: {
+      fontFamily: fonts.primary,
+      fontSize: 22,
     },
   },
   backgroundImage: require("../assets/background.png"),

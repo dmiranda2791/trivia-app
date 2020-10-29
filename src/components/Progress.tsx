@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     borderRightColor: "black",
   },
   text: {
-    ...StyleGuide.text.body,
-    fontSize: 25,
+    ...StyleGuide.text.sm,
+    color: StyleGuide.colors.white,
     marginTop: 15,
   },
 });
