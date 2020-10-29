@@ -1,10 +1,15 @@
-import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
+import { StackScreenProps } from "@react-navigation/stack";
 import { StyleSheet, Text } from "react-native";
+import { useDispatch } from "react-redux";
+import { useFocusEffect } from "@react-navigation/native";
+
 import Button from "../components/Buttons/Button";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
+
+import { getQuestions } from "../store/actions";
 
 type ScreenParams = {
   Question: {
@@ -24,6 +29,14 @@ const Welcome = (props: WelcomeProps) => {
       question: "Unturned originally started as a Roblox game.",
     });
   }, [navigation]);
+
+  const dispatch = useDispatch();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getQuestions());
+    }, [dispatch])
+  );
 
   return (
     <ScreenContainer>
