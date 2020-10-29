@@ -8,8 +8,8 @@ import Button from "../components/Buttons/Button";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
-
-import { beginGame, getQuestions } from "../store/actions";
+import { beginGame } from "../store/reducers/trivia";
+import { getQuestions } from "../store/actions";
 
 type ScreenParams = {
   Question: undefined;
@@ -22,7 +22,7 @@ const Welcome = (props: WelcomeProps) => {
   const dispatch = useDispatch();
 
   const onPress = React.useCallback(() => {
-    dispatch(beginGame(undefined));
+    dispatch(beginGame());
     navigation.navigate("Question");
   }, [navigation, dispatch]);
 
