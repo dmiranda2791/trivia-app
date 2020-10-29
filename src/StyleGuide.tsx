@@ -4,12 +4,18 @@ interface Colors {
   primary: string;
   white: string;
   progress: string;
+  positive: string;
+  negative: string;
+  neutral: string;
 }
 
 const colors: Colors = {
   primary: "#604DC6",
   white: "#FFFFFF",
   progress: "#EDF27C",
+  positive: "#4DCE6C",
+  negative: "#D83E3E",
+  neutral: "#ADA9A9",
 };
 
 interface Fonts {
