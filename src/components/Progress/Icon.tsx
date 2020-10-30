@@ -21,7 +21,10 @@ const Icon = (props: IconProps) => {
   return (
     <Animated.View style={[styles.containter, animatedStyle]}>
       <View>
-        <Image source={require("../../../assets/icons/star.png")} />
+        <Image
+          style={styles.image}
+          source={require("../../../assets/icons/star.png")}
+        />
         <Text style={[styles.text]}>
           {current}/{total}
         </Text>
@@ -33,16 +36,17 @@ const Icon = (props: IconProps) => {
 const styles = StyleSheet.create({
   containter: {
     ...StyleSheet.absoluteFillObject,
-    top: -30,
+    top: -25,
     left: -15,
   },
   text: {
     ...StyleGuide.text.xs,
     ...StyleSheet.absoluteFillObject,
     top: 28,
-    left: 25,
+    left: 20,
     color: StyleGuide.colors.primary,
   },
+  image: { width: 70, height: 70 },
 });
 
 export default Icon;

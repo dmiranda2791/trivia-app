@@ -13,7 +13,7 @@ interface Colors {
 const colors: Colors = {
   primary: "#604DC6",
   white: "#FFFFFF",
-  progress: "#EDF27C",
+  progress: "#FFFE34",
   positive: "#4DCE6C",
   negative: "#D83E3E",
   neutral: "#FFFFFF",

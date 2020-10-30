@@ -17,7 +17,7 @@ const Bar = (props: BarProps) => {
     };
   });
   return (
-    <View>
+    <View style={styles.container}>
       <View onLayout={onLayout} style={[styles.bar, styles.incomplete]} />
       <Animated.View style={[styles.bar, styles.complete, animatedStyleB]} />
     </View>
@@ -25,18 +25,30 @@ const Bar = (props: BarProps) => {
 };
 const HEIGHT = 20;
 const styles = StyleSheet.create({
+  container: {
+    borderRadius: 10,
+    marginHorizontal: 15,
+    shadowColor: StyleGuide.colors.primary,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 10,
+    shadowOpacity: 0.8,
+  },
   bar: {
     height: HEIGHT,
-    borderRadius: 50,
-    marginHorizontal: 15,
+    borderRadius: 8,
   },
   incomplete: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: StyleGuide.colors.white,
+    backgroundColor: StyleGuide.colors.primary,
     alignSelf: "stretch",
+    borderColor: StyleGuide.colors.progress,
+    borderWidth: 2,
   },
   complete: {
+    borderColor: StyleGuide.colors.primary,
     backgroundColor: StyleGuide.colors.progress,
+    borderWidth: 2,
+    borderStyle: "solid",
   },
 });
 
