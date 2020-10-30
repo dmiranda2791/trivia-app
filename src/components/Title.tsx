@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   },
   text: {
     ...StyleGuide.text.lg,
+    ...StyleGuide.text.shadow,
     color: StyleGuide.colors.white,
     textAlign: "center",
   },

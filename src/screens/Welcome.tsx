@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   },
   body: {
     ...StyleGuide.text.md,
+    ...StyleGuide.text.shadow,
     color: StyleGuide.colors.white,
     padding: 8,
   },

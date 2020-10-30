@@ -35,6 +35,7 @@ interface StyleGuide {
     md: TextStyle;
     sm: TextStyle;
     xs: TextStyle;
+    shadow: TextStyle;
   };
   backgroundImage: number;
   fonts: Fonts;
@@ -59,6 +60,11 @@ const StyleGuide: StyleGuide = {
     xs: {
       fontFamily: fonts.primary,
       fontSize: 15,
+    },
+    shadow: {
+      textShadowColor: "rgba(239, 226, 73, 0.60)",
+      textShadowOffset: { width: 1, height: 1 },
+      textShadowRadius: 10,
     },
   },
   backgroundImage: require("../assets/background.png"),
