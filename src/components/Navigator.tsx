@@ -1,5 +1,8 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from "@react-navigation/stack";
 import Welcome from "../screens/Welcome";
 import Question from "../screens/Question";
 import Results from "../screens/Results";
@@ -14,7 +17,12 @@ export type ScreenParams = {
 
 const Navigator = () => {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator
+      headerMode="none"
+      screenOptions={{
+        cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+      }}
+    >
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Question" component={Question} />
       <Stack.Screen name="Results" component={Results} />
