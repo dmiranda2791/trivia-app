@@ -28,6 +28,7 @@ const Results = (props: ResultsProps) => {
     dispatch(playAgain());
     props.navigation.navigate("Welcome");
   };
+
   return (
     <ScreenContainer>
       <Title text="You scored" />

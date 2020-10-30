@@ -1,7 +1,7 @@
 import React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
-import { StyleSheet, Text } from "react-native";
-import { useDispatch } from "react-redux";
+import { ActivityIndicator, StyleSheet, Text } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
 
 import Button from "../components/Buttons/Button";
@@ -11,12 +11,17 @@ import StyleGuide from "../StyleGuide";
 import { beginGame } from "../store/reducers/trivia";
 import { getQuestions } from "../store/actions";
 import { ScreenParams } from "../components/Navigator";
+import { RootState } from "../store";
 
 type WelcomeProps = StackScreenProps<ScreenParams>;
 
 const Welcome = (props: WelcomeProps) => {
   const { navigation } = props;
   const dispatch = useDispatch();
+
+  const selectQuestionsLoading = (state: RootState) =>
+    state.trivia.questions.loading;
+  const questionsLoading = useSelector(selectQuestionsLoading);
 
   const onPress = React.useCallback(() => {
     dispatch(beginGame());
@@ -36,7 +41,11 @@ const Welcome = (props: WelcomeProps) => {
         You will be presented with 10 true or false questions.
       </Text>
       <Text style={styles.body}>Can you score 100%?</Text>
-      <Button text="Begin" onPress={onPress} />
+      {questionsLoading ? (
+        <ActivityIndicator size="large" color={StyleGuide.colors.progress} />
+      ) : (
+        <Button text="Begin" onPress={onPress} />
+      )}
     </ScreenContainer>
   );
 };
@@ -54,6 +63,7 @@ const styles = StyleSheet.create({
   body: {
     ...StyleGuide.text.md,
     color: StyleGuide.colors.white,
+    padding: 8,
   },
 });
 export default Welcome;

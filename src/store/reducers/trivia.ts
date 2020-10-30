@@ -66,6 +66,7 @@ const triviaSlice = createSlice({
       state.questions.error = action.payload;
     },
     getQuestionsSucceded(state, action) {
+      state.questions.loading = false;
       state.questions.unanswered = action.payload;
       state.game.totalQuestions = action.payload.length;
     },
