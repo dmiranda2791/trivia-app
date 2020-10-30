@@ -90,7 +90,7 @@ const triviaSlice = createSlice({
 
         state.game.answeredQuestionsCount += 1;
         state.game.progress =
-          (state.game.answeredQuestionsCount + 1) / state.game.totalQuestions;
+          state.game.answeredQuestionsCount / state.game.totalQuestions;
       }
 
       if (answerIsCorrect) {

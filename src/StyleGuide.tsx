@@ -34,6 +34,7 @@ interface StyleGuide {
     lg: TextStyle;
     md: TextStyle;
     sm: TextStyle;
+    xs: TextStyle;
   };
   backgroundImage: number;
   fonts: Fonts;
@@ -54,6 +55,10 @@ const StyleGuide: StyleGuide = {
     sm: {
       fontFamily: fonts.primary,
       fontSize: 22,
+    },
+    xs: {
+      fontFamily: fonts.primary,
+      fontSize: 15,
     },
   },
   backgroundImage: require("../assets/background.png"),
