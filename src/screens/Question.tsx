@@ -49,6 +49,7 @@ const Question = (props: QuestionProps) => {
 const { height } = Dimensions.get("window");
 const MIN_BOX_HEIGHT = height * 0.35;
 const MIN_TITLE_HEIGHT = height * 0.2;
+
 const styles = StyleSheet.create({
   box: {
     minHeight: MIN_BOX_HEIGHT,

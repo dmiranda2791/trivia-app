@@ -32,10 +32,7 @@ const Results = (props: ResultsProps) => {
     <ScreenContainer>
       <Title text="You scored" />
       <Title text={`${correctAnswersCount}/${totalQuestions}`} />
-      <ScrollView
-        style={styles.separator}
-        showsHorizontalScrollIndicator={false}
-      >
+      <ScrollView style={styles.separator} showsVerticalScrollIndicator={false}>
         {answers.map((question) => (
           <ResultsItem
             style={styles.separator}

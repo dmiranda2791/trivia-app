@@ -1,17 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, TextStyle } from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import StyleGuide from "../StyleGuide";
 
 interface TitleProps {
   text?: string;
-  style?: TextStyle;
+  style?: ViewStyle;
 }
 
 const Title = ({ text, style }: TitleProps) => (
-  <Text style={[styles.text, style]}>{text}</Text>
+  <View style={[styles.container, style]}>
+    <Text style={[styles.text]}>{text}</Text>
+  </View>
 );
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+  },
   text: {
     ...StyleGuide.text.lg,
     color: StyleGuide.colors.white,
