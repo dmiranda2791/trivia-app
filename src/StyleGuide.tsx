@@ -62,7 +62,7 @@ const StyleGuide: StyleGuide = {
       fontSize: 15,
     },
     shadow: {
-      textShadowColor: "rgba(239, 226, 73, 0.60)",
+      textShadowColor: "rgba(239, 226, 73, 1)",
       textShadowOffset: { width: 1, height: 1 },
       textShadowRadius: 10,
     },
