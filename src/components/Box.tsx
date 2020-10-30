@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     justifyContent: "center",
     alignItems: "center",
+    padding: 8,
   },
   text: {
     ...StyleGuide.text.md,

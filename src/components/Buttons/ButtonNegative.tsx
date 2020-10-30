@@ -1,4 +1,5 @@
 import React from "react";
+import StyleGuide from "../../StyleGuide";
 import ButtonRounded from "./ButtonRounded";
 
 interface ButtonNegativeProps {
@@ -8,7 +9,12 @@ interface ButtonNegativeProps {
 const ButtonNegative = (props: ButtonNegativeProps) => {
   const { onPress } = props;
   return (
-    <ButtonRounded variant="negative" iconName="times" onPress={onPress} />
+    <ButtonRounded
+      variant="negative"
+      iconName="times"
+      onPress={onPress}
+      iconColor={StyleGuide.colors.white}
+    />
   );
 };
 

@@ -9,6 +9,7 @@ interface ButtonRoundedProps {
   variant: "positive" | "negative" | "neutral";
   iconName: string;
   style?: ViewStyle;
+  iconColor?: string;
 }
 
 interface Variants {
@@ -29,12 +30,12 @@ const VARIANTS: Variants = {
 };
 
 const ButtonRounded = (props: ButtonRoundedProps) => {
-  const { onPress, variant, iconName, style } = props;
+  const { onPress, variant, iconName, style, iconColor } = props;
 
   return (
     <RectButton onPress={onPress}>
       <View style={[styles.container, style, VARIANTS[variant]]}>
-        <FontAwesome5 name={iconName} size={24} color="black" />
+        <FontAwesome5 name={iconName} size={32} color={iconColor} />
       </View>
     </RectButton>
   );

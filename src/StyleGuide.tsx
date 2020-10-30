@@ -16,7 +16,7 @@ const colors: Colors = {
   progress: "#EDF27C",
   positive: "#4DCE6C",
   negative: "#D83E3E",
-  neutral: "#ADA9A9",
+  neutral: "#FFFFFF",
   border: "#707070",
 };
 
