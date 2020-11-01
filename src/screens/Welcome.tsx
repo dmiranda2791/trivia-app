@@ -8,7 +8,7 @@ import Button from "../components/Buttons/Button";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import StyleGuide from "../StyleGuide";
-import { beginGame } from "../store/reducers/trivia";
+import { beginGame } from "../store/reducers/game";
 import { getQuestions } from "../store/actions";
 import { ScreenParams } from "../components/Navigator";
 import { RootState } from "../store";
@@ -19,8 +19,7 @@ const Welcome = (props: WelcomeProps) => {
   const { navigation } = props;
   const dispatch = useDispatch();
 
-  const selectQuestionsLoading = (state: RootState) =>
-    state.trivia.questions.loading;
+  const selectQuestionsLoading = (state: RootState) => state.game.loading;
   const questionsLoading = useSelector(selectQuestionsLoading);
 
   const onPress = React.useCallback(() => {

@@ -1,9 +1,12 @@
-import { combineReducers } from "redux";
-import triviaReducer from "./trivia";
-export { TriviaState } from "./trivia";
+import game from "./game";
+import { GameState } from "./game";
 
-const rootReducer = combineReducers({
-  trivia: triviaReducer,
-});
+export interface RootState {
+  game: GameState;
+}
+
+const rootReducer = {
+  game,
+};
 
 export default rootReducer;

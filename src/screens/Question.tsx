@@ -14,12 +14,11 @@ type QuestionProps = StackScreenProps<ScreenParams>;
 
 const Question = (props: QuestionProps) => {
   const { navigation } = props;
-  const selectQuestion = (state: RootState) => state.trivia.questions.visible;
-  const selectGameProgress = (state: RootState) => state.trivia.game.progress;
-  const selectTotalQuestions = (state: RootState) =>
-    state.trivia.game.totalQuestions;
+  const selectQuestion = (state: RootState) => state.game.visibleQuestion;
+  const selectGameProgress = (state: RootState) => state.game.progress;
+  const selectTotalQuestions = (state: RootState) => state.game.totalQuestions;
   const selectAnsweredQuestionsCount = (state: RootState) =>
-    state.trivia.game.answeredQuestionsCount;
+    state.game.answeredQuestionsCount;
 
   const question = useSelector(selectQuestion);
   const gameProgress = useSelector(selectGameProgress);

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
-import { QuestionAnswered } from "../store/reducers/trivia";
+import { QuestionAnswered } from "../store/reducers/game";
 import StyleGuide from "../StyleGuide";
 
 interface ResultsItemProps {

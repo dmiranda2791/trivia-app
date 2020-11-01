@@ -9,17 +9,16 @@ import ResultsItem from "../components/ResultsItem";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import { RootState } from "../store";
-import { playAgain } from "../store/reducers/trivia";
+import { playAgain } from "../store/reducers/game";
 
 type ResultsProps = StackScreenProps<ScreenParams>;
 
 const Results = (props: ResultsProps) => {
   const dispatch = useDispatch();
-  const selectAnswers = (state: RootState) => state.trivia.game.answers;
-  const selectTotalQuestions = (state: RootState) =>
-    state.trivia.game.totalQuestions;
+  const selectAnswers = (state: RootState) => state.game.answers;
+  const selectTotalQuestions = (state: RootState) => state.game.totalQuestions;
   const selectCorrectAnswersCount = (state: RootState) =>
-    state.trivia.game.correctAnswersCount;
+    state.game.correctAnswersCount;
 
   const answers = useSelector(selectAnswers);
   const totalQuestions = useSelector(selectTotalQuestions);

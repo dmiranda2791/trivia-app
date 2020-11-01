@@ -4,7 +4,7 @@ import {
   getQuestionsFailed,
   getQuestionsStarted,
   getQuestionsSucceded,
-} from "../reducers/trivia";
+} from "../reducers/game";
 
 export const getQuestions = () => async (dispatch: Dispatch) => {
   dispatch(getQuestionsStarted());

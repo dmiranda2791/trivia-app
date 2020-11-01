@@ -6,8 +6,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
+    "test:types:watch": "tsc -w",
     "test:types": "tsc",
-    "test:watch": "jest --watch --coverage=false --changedSince=origin/master",
+    "test:watch": "jest --watch",
     "test:debug": "jest -o --watch --coverage=false",
     "test": "jest",
     "lint": "eslint ."

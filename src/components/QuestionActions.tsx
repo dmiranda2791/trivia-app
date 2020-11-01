@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { answerQuestion, skipQuestion } from "../store/reducers/trivia";
+import { answerQuestion, skipQuestion } from "../store/reducers/game";
 import ButtonNegative from "./Buttons/ButtonNegative";
 import ButtonPositive from "./Buttons/ButtonPositive";
 import ButtonSkip from "./Buttons/ButtonSkip";
