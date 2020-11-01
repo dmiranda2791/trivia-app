@@ -1,6 +1,7 @@
 # Trivia App
 
 [![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
+![example workflow name](https://github.com/dmiranda2791/trivia-app/workflows/Expo%20Publish/badge.svg)
 
 Mobile trivia app game built using React Native, Expo, TypeScript, Redux, Jest, React Native Reanimated and React Native Gesture Handler.
 
