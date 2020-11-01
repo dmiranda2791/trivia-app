@@ -6,7 +6,6 @@ export interface QuestionAnswered {
   answerIsCorrect: boolean;
 }
 export interface GameState {
-  answered: Question[];
   answeredQuestionsCount: number;
   answers: QuestionAnswered[];
   correctAnswersCount: number;
@@ -20,7 +19,6 @@ export interface GameState {
 }
 
 const initialState: GameState = {
-  answered: [],
   answeredQuestionsCount: 0,
   answers: [],
   correctAnswersCount: 0,
@@ -97,11 +95,12 @@ const triviaSlice = createSlice({
       }
     },
     playAgain(state) {
-      state.answered = [];
       state.totalQuestions = 0;
       state.progress = 0;
       state.correctAnswersCount = 0;
       state.answers = [];
+      state.unanswered = [];
+      state.visibleQuestion = null;
     },
   },
 });
