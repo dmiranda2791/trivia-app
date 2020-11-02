@@ -164,6 +164,31 @@ describe("When a question is answered", () => {
     expect(state.answers[0].question).toBe(visibleQuestion);
     expect(state.answers[0].answerIsCorrect).toBeDefined();
   });
+  describe("when the question has already been answered", () => {
+    it("should not save a duplicate answer", () => {
+      const visibleQuestion = questions[0];
+      const unanswered = questions.slice(1);
+      const initialState = getStateMock({
+        unanswered,
+        totalQuestions: 10,
+        visibleQuestion,
+        answeredQuestionsCount: 1,
+        correctAnswersCount: 1,
+        progress: 0.1,
+        answers: [{ question: visibleQuestion, answerIsCorrect: true }],
+      });
+
+      const action = answerQuestion({ answer: visibleQuestion.correct_answer });
+
+      const state = reducer(initialState, action);
+
+      const questionAnswers = state.answers.filter(
+        (answeredQuestion) => answeredQuestion.question === visibleQuestion
+      );
+      expect(questionAnswers.length).toBe(1);
+    });
+  });
+
   it("should increment the answered questions count", () => {
     const visibleQuestion = questions[0];
     const initialState = getStateMock({

@@ -70,6 +70,14 @@ const triviaSlice = createSlice({
     answerQuestion(state, action) {
       const { answer } = action.payload;
 
+      const isVisibleQuestionAnswerSaved = state.answers.find(
+        (question) => question.question.id === state.visibleQuestion?.id
+      );
+
+      if (isVisibleQuestionAnswerSaved) {
+        return;
+      }
+
       const answerIsCorrect = state.visibleQuestion?.correct_answer === answer;
 
       if (answerIsCorrect) {
