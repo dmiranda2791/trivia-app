@@ -1,18 +1,9 @@
 import { DataService } from "../../services";
-import { Dispatch } from "redux";
-import {
-  getQuestionsFailed,
-  getQuestionsStarted,
-  getQuestionsSucceded,
-} from "../reducers/game";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getQuestions = () => async (dispatch: Dispatch) => {
-  dispatch(getQuestionsStarted());
+const QUESTIONS_QUANTITY = 10;
 
-  try {
-    const questions = await DataService.getQuestions(10);
-    dispatch(getQuestionsSucceded(questions));
-  } catch (err) {
-    dispatch(getQuestionsFailed(err.toString()));
-  }
-};
+export const getQuestions = createAsyncThunk("GET_QUESTIONS", async () => {
+  const questions = await DataService.getQuestions(QUESTIONS_QUANTITY);
+  return questions;
+});

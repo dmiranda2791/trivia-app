@@ -1,5 +1,6 @@
 import { Question } from "../entities";
 import { createSlice } from "@reduxjs/toolkit";
+import { getQuestions } from "../actions";
 
 export interface QuestionAnswered {
   question: Question;
@@ -47,19 +48,6 @@ const triviaSlice = createSlice({
   name: "simplifiedTriviaReducer",
   initialState,
   reducers: {
-    getQuestionsStarted(state) {
-      state.error = null;
-      state.loading = true;
-    },
-    getQuestionsFailed(state, action) {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    getQuestionsSucceded(state, action) {
-      state.loading = false;
-      state.unanswered = action.payload;
-      state.totalQuestions = action.payload.length;
-    },
     beginGame(state) {
       const [visibleQuestion, ...unanswered] = state.unanswered;
       state.visibleQuestion = visibleQuestion;
@@ -111,12 +99,24 @@ const triviaSlice = createSlice({
       state.visibleQuestion = null;
     },
   },
+  extraReducers: {
+    [getQuestions.pending.type]: (state) => {
+      state.error = null;
+      state.loading = true;
+    },
+    [getQuestions.fulfilled.type]: (state, action) => {
+      state.loading = false;
+      state.unanswered = action.payload;
+      state.totalQuestions = action.payload.length;
+    },
+    [getQuestions.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
 });
 
 export const {
-  getQuestionsStarted,
-  getQuestionsFailed,
-  getQuestionsSucceded,
   beginGame,
   answerQuestion,
   skipQuestion,

@@ -7,6 +7,10 @@ import {
   skipQuestion,
 } from "../game";
 
+jest.mock("react-native-get-random-values", () => ({
+  getRandomBase64: jest.fn(),
+}));
+
 import reducer from "../game";
 import { Question } from "../../entities";
 const questions = [
