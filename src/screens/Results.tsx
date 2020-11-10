@@ -23,6 +23,7 @@ const Results = (props: ResultsProps) => {
   const answers = useSelector(selectAnswers);
   const totalQuestions = useSelector(selectTotalQuestions);
   const correctAnswersCount = useSelector(selectCorrectAnswersCount);
+
   const onPlayAgainPress = () => {
     dispatch(playAgain());
     props.navigation.navigate("Welcome");
